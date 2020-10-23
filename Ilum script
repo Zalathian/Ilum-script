@@ -1,0 +1,511 @@
+
+
+local IlumGui = Instance.new("ScreenGui")
+local Frame3 = Instance.new("ImageButton")
+local F4 = Instance.new("TextLabel")
+local TK = Instance.new("TextButton")
+local Stat = Instance.new("TextButton")
+local Medi = Instance.new("TextButton")
+local IForce = Instance.new("TextButton")
+local IBlocks = Instance.new("TextButton")
+local ABlocks = Instance.new("TextButton")
+local cred = Instance.new("TextLabel")
+local cred2 = Instance.new("TextLabel")
+local Loadouts = Instance.new("ScrollingFrame")
+local Button3 = Instance.new("TextButton")
+local Button4 = Instance.new("TextButton")
+local Button2 = Instance.new("TextButton")
+local Button = Instance.new("TextButton")
+local Button5 = Instance.new("TextButton")
+local Button6 = Instance.new("TextButton")
+local Button7 = Instance.new("TextButton")
+local Button8 = Instance.new("TextButton")
+local TextLabel = Instance.new("TextLabel")
+
+
+IlumGui.Name = "IlumGui"
+IlumGui.Parent = game.CoreGui
+IlumGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame3.Name = "Frame3"
+Frame3.Parent = IlumGui
+Frame3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame3.BackgroundTransparency = 1.000
+Frame3.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Frame3.BorderSizePixel = 0
+Frame3.Position = UDim2.new(0.392242986, 0, 2.348190546, 0)
+Frame3.Size = UDim2.new(0, 434, 0, 266)
+Frame3.Image = "rbxassetid://2790382281"
+Frame3.ImageColor3 = Color3.fromRGB(35, 35, 35)
+Frame3.ScaleType = Enum.ScaleType.Slice
+Frame3.SliceCenter = Rect.new(4, 4, 252, 252)
+
+F4.Name = "F4"
+F4.Parent = Frame3
+F4.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+F4.BorderSizePixel = 0
+F4.Position = UDim2.new(0.187002629, 0, 0.0644191504, 0)
+F4.Size = UDim2.new(0, 18, 0, 12)
+F4.Font = Enum.Font.SourceSans
+F4.Text = "Ilum GUI"
+F4.TextColor3 = Color3.fromRGB(255, 255, 255)
+F4.TextSize = 50.000
+
+
+TK.Name = "TK"
+TK.Parent = Frame3
+TK.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+TK.BorderSizePixel = 0
+TK.Position = UDim2.new(0.620000005, 0, 0.525406063, 0)
+TK.Size = UDim2.new(0, 156, 0, 31)
+TK.Font = Enum.Font.SourceSans
+TK.Text = "Team Kill"
+TK.TextColor3 = Color3.fromRGB(255, 255, 255)
+TK.TextSize = 20.000
+TK.MouseButton1Down:connect(function()
+	game:GetService("Workspace").EventBounty.Value = true
+end)
+
+Stat.Name = "Stat"
+Stat.Parent = Frame3
+Stat.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+Stat.BorderSizePixel = 0
+Stat.Position = UDim2.new(0.620000005, 0, 0.293962389, 0)
+Stat.Size = UDim2.new(0, 156, 0, 31)
+Stat.Font = Enum.Font.SourceSans
+Stat.Text = "Kill Aura"
+Stat.TextColor3 = Color3.fromRGB(255, 255, 255)
+Stat.TextSize = 20.000
+Stat.MouseButton1Down:connect(function()
+	local plr = game.Players.LocalPlayer
+	local char = plr.Character
+
+	while wait() do
+		for i,v in next, game:service'Players':GetPlayers() do
+			if v ~= plr then
+				local distance = v:DistanceFromCharacter(char.HumanoidRootPart.Position)
+				if distance < 20 then
+					for a,x in pairs(char:GetChildren())do
+						if x:IsA("Tool") then
+							spawn(function()
+								x.RemoteEvent:FireServer("Attack", v.Character.Humanoid)
+							end)
+						end
+					end
+				end
+			end
+		end
+	end
+end)
+
+Medi.Name = "Medi"
+Medi.Parent = Frame3
+Medi.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+Medi.BorderSizePixel = 0
+Medi.Position = UDim2.new(0.620000005, 0, 0.639368415, 0)
+Medi.Size = UDim2.new(0, 156, 0, 31)
+Medi.Font = Enum.Font.SourceSans
+Medi.Text = "Unlock Med"
+Medi.TextColor3 = Color3.fromRGB(255, 255, 255)
+Medi.TextSize = 20.000
+Medi.MouseButton1Down:connect(function()
+	game:GetService("Players").LocalPlayer.Settings.Meditation.Value = 1
+end)
+
+IForce.Name = "IForce"
+IForce.Parent = Frame3
+IForce.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+IForce.BorderSizePixel = 0
+IForce.Position = UDim2.new(0.620000005, 0, 0.180999994, 0)
+IForce.Size = UDim2.new(0, 156, 0, 31)
+IForce.Font = Enum.Font.SourceSans
+IForce.Text = "Infinite Force"
+IForce.TextColor3 = Color3.fromRGB(255, 255, 255)
+IForce.TextSize = 20.000
+IForce.MouseButton1Down:connect(function()
+	getgenv().force = true
+	if getgenv().force == true then
+		local A_1000 = "Dash"
+		local A_1002 = 
+			{
+			[1] = game:GetService("Players").LocalPlayer
+		}
+		local A_1003 = -9999999999999999999999999999
+		local A_1004 = true
+		local Event = game:GetService("ReplicatedStorage").Remotes.ForcePower
+		Event:FireServer(A_1000, A_1002, A_1003, A_1004)
+	end
+end)
+
+IBlocks.Name = "IBlocks"
+IBlocks.Parent = Frame3
+IBlocks.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+IBlocks.BorderColor3 = Color3.fromRGB(27, 42, 53)
+IBlocks.BorderSizePixel = 0
+IBlocks.Position = UDim2.new(0.620000005, 0, 0.409684211, 0)
+IBlocks.Size = UDim2.new(0, 156, 0, 31)
+IBlocks.Font = Enum.Font.SourceSans
+IBlocks.Text = "Infinite Blocks"
+IBlocks.TextColor3 = Color3.fromRGB(255, 255, 255)
+IBlocks.TextSize = 20.000
+IBlocks.MouseButton1Down:connect(function()
+	getgenv().iBlocks = true
+	while wait() do
+		if getgenv().iBlocks == true then
+			game.Players.LocalPlayer.PlayerGui.StatsGui.Block.Count.Text = 10
+		end
+	end
+end)
+
+ABlocks.Name = "ABlocks"
+ABlocks.Parent = Frame3
+ABlocks.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+ABlocks.BorderSizePixel = 0
+ABlocks.Position = UDim2.new(0.620000005, 0, 0.754330873, 0)
+ABlocks.Size = UDim2.new(0, 156, 0, 31)
+ABlocks.Font = Enum.Font.SourceSans
+ABlocks.Text = "Auto Block"
+ABlocks.TextColor3 = Color3.fromRGB(255, 255, 255)
+ABlocks.TextSize = 20.000
+ABlocks.MouseButton1Down:connect(function()
+	local Ployth = game.Players.LocalPlayer
+	local Avatar = Ployth.Character
+	getgenv().Autoblock = true;
+	while wait() do
+		if getgenv().Autoblock == true then
+			for i,v in next, game:service'Players':GetPlayers() do
+				if v ~= Ployth then
+					for a,x in pairs(Avatar:GetChildren())do
+						if x:IsA("Tool") then
+							spawn(function()
+								x.RemoteEvent:FireServer("Block", v.Character.Humanoid)
+							end)
+						end
+					end
+				end
+			end
+		end
+	end
+end)
+
+cred.Name = "cred"
+cred.Parent = Frame3
+cred.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+cred.BorderSizePixel = 0
+cred.Position = UDim2.new(0.0645162761, 0, 0.816060066, 0)
+cred.Size = UDim2.new(0, 36, 0, 14)
+cred.Font = Enum.Font.SourceSans
+cred.Text = "Credits:"
+cred.TextColor3 = Color3.fromRGB(255, 255, 255)
+cred.TextSize = 25.000
+
+cred2.Name = "cred2"
+cred2.Parent = Frame3
+cred2.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+cred2.BorderSizePixel = 0
+cred2.Position = UDim2.new(0.147465572, 0, 0.902526438, 0)
+cred2.Size = UDim2.new(0, 9, 0, 12)
+cred2.Font = Enum.Font.SourceSans
+cred2.Text = "Silv & Zal"
+cred2.TextColor3 = Color3.fromRGB(255, 255, 255)
+cred2.TextSize = 25.000
+
+Loadouts.Name = "Loadouts"
+Loadouts.Parent = Frame3
+Loadouts.Active = true
+Loadouts.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+Loadouts.BorderSizePixel = 0
+Loadouts.Position = UDim2.new(0.0645162687, 0, 0.29754132, 0)
+Loadouts.Size = UDim2.new(0, 229, 0, 121)
+Loadouts.CanvasSize = UDim2.new(0, 0, 1, 0)
+
+Button3.Name = "Button3"
+Button3.Parent = Loadouts
+Button3.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+Button3.BorderSizePixel = 0
+Button3.Position = UDim2.new(0, 0, -0.00375939859, 0)
+Button3.Size = UDim2.new(0, 214, 0, 31)
+Button3.Font = Enum.Font.SourceSans
+Button3.Text = "Double-Bladed"
+Button3.TextColor3 = Color3.fromRGB(255, 255, 255)
+Button3.TextSize = 20.000
+Button3.MouseButton1Down:connect(function()
+
+	local A_1 = "Double"
+	local A_2 = "Lightsaber"
+	local A_3 = 
+		{
+		[1] = 0, 
+		[2] = 0
+	}
+	local Event = game:GetService("ReplicatedStorage").Remotes.GiveLoadouts
+	Event:InvokeServer(A_1, A_2, A_3)
+	local kill = game.Players.LocalPlayer.Character
+	kill.Torso:Destroy()
+	kill.Head:Destroy()
+	kill.LeftArm:Destroy()
+	kill.RightArm:Destroy()
+	kill.LeftLeg:Destroy()
+	kill.RightLeg:Destroy()
+end)
+Button4.Name = "Button4"
+Button4.Parent = Loadouts
+Button4.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+Button4.BorderSizePixel = 0
+Button4.Position = UDim2.new(0, 0, 0.114661656, 0)
+Button4.Size = UDim2.new(0, 214, 0, 31)
+Button4.Font = Enum.Font.SourceSans
+Button4.Text = "Single"
+Button4.TextColor3 = Color3.fromRGB(255, 255, 255)
+Button4.TextSize = 20.000
+Button4.MouseButton1Down:connect(function()
+
+	local A_1 = "Single"
+	local A_2 = "Lightsaber"
+	local A_3 = 
+		{
+		[1] = 0
+	}
+	local Event = game:GetService("ReplicatedStorage").Remotes.GiveLoadouts
+	Event:InvokeServer(A_1, A_2, A_3)
+	
+	local kill = game.Players.LocalPlayer.Character
+	kill.Torso:Destroy()
+	kill.Head:Destroy()
+	kill.LeftArm:Destroy()
+	kill.RightArm:Destroy()
+	kill.LeftLeg:Destroy()
+	kill.RightLeg:Destroy()
+
+end)
+Button2.Name = "Button2"
+Button2.Parent = Loadouts
+Button2.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+Button2.BorderSizePixel = 0
+Button2.Position = UDim2.new(0, 0, 0.233082712, 0)
+Button2.Size = UDim2.new(0, 214, 0, 31)
+Button2.Font = Enum.Font.SourceSans
+Button2.Text = "Backhand"
+Button2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Button2.TextSize = 20.000
+Button2.MouseButton1Down:connect(function()
+	local A_1 = "Backhand"
+	local A_2 = "Lightsaber"
+	local A_3 = 
+		{
+		[1] = 0
+	}
+	local Event = game:GetService("ReplicatedStorage").Remotes.GiveLoadouts
+	Event:InvokeServer(A_1, A_2, A_3)
+	local kill = game.Players.LocalPlayer.Character
+	kill.Torso:Destroy()
+	kill.Head:Destroy()
+	kill.LeftArm:Destroy()
+	kill.RightArm:Destroy()
+	kill.LeftLeg:Destroy()
+	kill.RightLeg:Destroy()
+end)
+Button.Name = "Button"
+Button.Parent = Loadouts
+Button.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+Button.BorderSizePixel = 0
+Button.Position = UDim2.new(0, 0, 0.347744346, 0)
+Button.Size = UDim2.new(0, 214, 0, 31)
+Button.Font = Enum.Font.SourceSans
+Button.Text = "Dual-Saber"
+Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+Button.TextSize = 20.000
+Button.MouseButton1Down:connect(function()
+	local A_1 = "Dual"
+	local A_2 = "Lightsaber"
+	local A_3 = 
+		{
+		[1] = 0, 
+		[2] = 0
+	}
+	local Event = game:GetService("ReplicatedStorage").Remotes.GiveLoadouts
+	Event:InvokeServer(A_1, A_2, A_3)
+	local kill = game.Players.LocalPlayer.Character
+	kill.Torso:Destroy()
+	kill.Head:Destroy()
+	kill.LeftArm:Destroy()
+	kill.RightArm:Destroy()
+	kill.LeftLeg:Destroy()
+	kill.RightLeg:Destroy()
+end)
+Button5.Name = "Button5"
+Button5.Parent = Loadouts
+Button5.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+Button5.BorderSizePixel = 0
+Button5.Position = UDim2.new(-0.00436681043, 0, 0.471804529, 0)
+Button5.Size = UDim2.new(0, 214, 0, 31)
+Button5.Font = Enum.Font.SourceSans
+Button5.Text = "Pumpkin-Saber"
+Button5.TextColor3 = Color3.fromRGB(255, 255, 255)
+Button5.TextSize = 20.000
+Button5.MouseButton1Down:connect(function()
+	local A_1 = "PumpkinSaber"
+	local A_2 = "Lightsaber"
+	local A_3 = 
+		{
+		[1] = 0
+	}
+	local Event = game:GetService("ReplicatedStorage").Remotes.GiveLoadouts
+	Event:InvokeServer(A_1, A_2, A_3)
+	local kill = game.Players.LocalPlayer.Character
+	kill.Torso:Destroy()
+	kill.Head:Destroy()
+	kill.LeftArm:Destroy()
+	kill.RightArm:Destroy()
+	kill.LeftLeg:Destroy()
+	kill.RightLeg:Destroy()
+end)
+Button6.Name = "Button6"
+Button6.Parent = Loadouts
+Button6.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+Button6.BorderSizePixel = 0
+Button6.Position = UDim2.new(0, 0, 0.605263233, 0)
+Button6.Size = UDim2.new(0, 214, 0, 31)
+Button6.Font = Enum.Font.SourceSans
+Button6.Text = "DC-15S"
+Button6.TextColor3 = Color3.fromRGB(255, 255, 255)
+Button6.TextSize = 20.000
+Button6.MouseButton1Down:connect(function()
+
+
+	local A_1 = "Recruit"
+	local A_2 = "Lightsaber"
+	local A_3 = 
+		{
+		[1] = 0
+	}
+	local Event = game:GetService("ReplicatedStorage").Remotes.GiveLoadouts
+	Event:InvokeServer(A_1, A_2, A_3)
+	local kill = game.Players.LocalPlayer.Character
+	kill.Torso:Destroy()
+	kill.Head:Destroy()
+	kill.LeftArm:Destroy()
+	kill.RightArm:Destroy()
+	kill.LeftLeg:Destroy()
+	kill.RightLeg:Destroy()
+
+end)
+Button7.Name = "Button7"
+Button7.Parent = Loadouts
+Button7.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+Button7.BorderSizePixel = 0
+Button7.Position = UDim2.new(0, 0, 0.727443635, 0)
+Button7.Size = UDim2.new(0, 214, 0, 31)
+Button7.Font = Enum.Font.SourceSans
+Button7.Text = "Sniper+Rifle"
+Button7.TextColor3 = Color3.fromRGB(255, 255, 255)
+Button7.TextSize = 20.000
+Button7.MouseButton1Down:connect(function()
+	local v1 = "Advanced Trooper" -- sniper and rifle
+	local v2 = "Lightsaber"
+	local v3 = {
+		[1] = 0, 
+		[2] = 0
+	}
+	local rem = game:GetService("ReplicatedStorage").Remotes.GiveLoadouts
+
+	rem:InvokeServer(v1, v2, v3)
+	local kill = game.Players.LocalPlayer.Character
+	kill.Torso:Destroy()
+	kill.Head:Destroy()
+	kill.LeftArm:Destroy()
+	kill.RightArm:Destroy()
+	kill.LeftLeg:Destroy()
+	kill.RightLeg:Destroy()
+end)
+Button8.Name = "Button8"
+Button8.Parent = Loadouts
+Button8.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+Button8.BorderSizePixel = 0
+Button8.Position = UDim2.new(0, 0, 0.845864773, 0)
+Button8.Size = UDim2.new(0, 214, 0, 31)
+Button8.Font = Enum.Font.SourceSans
+Button8.Text = "Z6+Pistols"
+Button8.TextColor3 = Color3.fromRGB(255, 255, 255)
+Button8.TextSize = 20.000
+Button8.MouseButton1Down:connect(function()
+	local v1 = "Elite Trooper" -- minigun & pistols
+	local v2 = "Lightsaber"
+	local v3 = {
+		[1] = 0, 
+		[2] = 0
+	}
+	local rem = game:GetService("ReplicatedStorage").Remotes.GiveLoadouts
+
+	rem:InvokeServer(v1, v2, v3)
+	local kill = game.Players.LocalPlayer.Character
+	kill.Torso:Destroy()
+	kill.Head:Destroy()
+	kill.LeftArm:Destroy()
+	kill.RightArm:Destroy()
+	kill.LeftLeg:Destroy()
+	kill.RightLeg:Destroy()
+end)
+TextLabel.Parent = Frame3
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0.0645161271, 0, 0.229872167, 0)
+TextLabel.Size = UDim2.new(0, 136, 0, 5)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "Loadouts:           "
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 25.000
+
+-- Scripts:
+
+local function MISQU_fake_script() -- IlumGui.WL 
+	local script = Instance.new('LocalScript', IlumGui)
+
+	
+	local Frame3 = script.Parent.Frame3
+	local IBlocks = script.Parent.Frame3.IBlocks
+	local IForce = script.Parent.Frame3.IForce	
+	local Medi = script.Parent.Frame3.Medi
+	local TK = script.Parent.Frame3.TK
+	local ABlocks = script.Parent.Frame3.ABlocks
+	local Stat = script.Parent.Frame3.Stat
+	local hotkey = Enum.KeyCode.Insert
+	local F4 = script.Parent.Frame3.F4
+	local cred2 = script.Parent.Frame3.cred2
+	local cred = script.Parent.Frame3.cred2
+	Frame3.Visible = true
+	Frame3.Draggable = true
+	
+	
+	local UIS = game:GetService("UserInputService")
+	local open = false
+	UIS.InputBegan:Connect(function(key, gp)
+				if key.KeyCode == hotkey then
+					Frame3.Visible = true
+			if open == false then
+						open = true
+						Frame3:TweenPosition(
+							UDim2.new(0.392242986, 0, 0.348, 0),
+							"InOut",
+							"Quad",
+							1.1,
+							false
+						)
+				Frame3.Visible = open
+			elseif open == true then
+						open = false
+						Frame3:TweenPosition(
+							UDim2.new(0.392242986, 0, 1.5, 0),
+							"InOut",
+							"Quad",
+							1.1,
+							false
+							)
+						wait(2)
+				Frame3.Visible = open
+			end	
+		end
+	end)
+end
+coroutine.wrap(MISQU_fake_script)()
