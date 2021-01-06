@@ -310,38 +310,10 @@ Button.BorderSizePixel = 0
 Button.Position = UDim2.new(0, 0, 0.347744346, 0)
 Button.Size = UDim2.new(0, 214, 0, 31)
 Button.Font = Enum.Font.SourceSans
-Button.Text = "Dual-Saber"
+Button.Text = "Temple-Guard"
 Button.TextColor3 = Color3.fromRGB(255, 255, 255)
 Button.TextSize = 20.000
 Button.MouseButton1Down:connect(function()
-	local A_1 = "Dual"
-	local A_2 = "Lightsaber"
-	local A_3 = 
-		{
-		[1] = 0, 
-		[2] = 0
-	}
-	local Event = game:GetService("ReplicatedStorage").Remotes.GiveLoadouts
-	Event:InvokeServer(A_1, A_2, A_3)
-	local kill = game.Players.LocalPlayer.Character
-	kill.Torso:Destroy()
-	kill.Head:Destroy()
-	kill.LeftArm:Destroy()
-	kill.RightArm:Destroy()
-	kill.LeftLeg:Destroy()
-	kill.RightLeg:Destroy()
-end)
-Button5.Name = "Button5"
-Button5.Parent = Loadouts
-Button5.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
-Button5.BorderSizePixel = 0
-Button5.Position = UDim2.new(-0.00436681043, 0, 0.471804529, 0)
-Button5.Size = UDim2.new(0, 214, 0, 31)
-Button5.Font = Enum.Font.SourceSans
-Button5.Text = "Temple Guard Saber"
-Button5.TextColor3 = Color3.fromRGB(255, 255, 255)
-Button5.TextSize = 20.000
-Button5.MouseButton1Down:connect(function()
 for i, v in pairs(game.Workspace:GetChildren()) do
           if v.DataCost == 11659 then
               fireclickdetector(v.Model["Tool-Giver"].Part.ClickDetector)
@@ -357,6 +329,34 @@ while wait() do
         end
     end
 end
+end)
+Button5.Name = "Button5"
+Button5.Parent = Loadouts
+Button5.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+Button5.BorderSizePixel = 0
+Button5.Position = UDim2.new(-0.00436681043, 0, 0.471804529, 0)
+Button5.Size = UDim2.new(0, 214, 0, 31)
+Button5.Font = Enum.Font.SourceSans
+Button5.Text = "Dual-Saber"
+Button5.TextColor3 = Color3.fromRGB(255, 255, 255)
+Button5.TextSize = 20.000
+Button5.MouseButton1Down:connect(function()
+local A_1 = "Dual"
+    local A_2 = "Lightsaber"
+    local A_3 = 
+        {
+        [1] = 0, 
+        [2] = 0
+    }
+    local Event = game:GetService("ReplicatedStorage").Remotes.GiveLoadouts
+    Event:InvokeServer(A_1, A_2, A_3)
+    local kill = game.Players.LocalPlayer.Character
+    kill.Torso:Destroy()
+    kill.Head:Destroy()
+    kill.LeftArm:Destroy()
+    kill.RightArm:Destroy()
+    kill.LeftLeg:Destroy()
+    kill.RightLeg:Destroy()
 end)
 Button6.Name = "Button6"
 Button6.Parent = Loadouts
